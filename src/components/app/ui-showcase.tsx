@@ -37,9 +37,9 @@ export function UiShowcase() {
         <div className="rounded-[1.75rem] border border-slate-900/10 bg-white p-6 shadow-[0_20px_50px_-40px_rgba(15,23,42,0.35)]">
           <div className="flex items-center justify-between gap-4">
             <div>
-              <p className="text-sm font-medium text-slate-500">Reusable data table</p>
+              <p className="text-sm font-medium text-slate-500">Product records</p>
               <h2 className="mt-2 text-xl font-semibold tracking-[-0.03em]">
-                Controlled item preview
+                Recent controlled items
               </h2>
             </div>
             <button
@@ -95,17 +95,17 @@ export function UiShowcase() {
       </div>
 
       <div className="rounded-[1.75rem] border border-slate-900/10 bg-white p-6 shadow-[0_20px_50px_-40px_rgba(15,23,42,0.35)]">
-        <p className="text-sm font-medium text-slate-500">Reusable form fields</p>
+        <p className="text-sm font-medium text-slate-500">Record details</p>
         <div className="mt-5 space-y-4">
           <TextField
             defaultValue="NXG-2408 Controller"
-            hint="Shared text input styling for future entity forms."
+            hint="Primary controlled item name."
             label="Product name"
             placeholder="Enter product name"
           />
           <SelectField
             defaultValue="engineering"
-            hint="Select field styling aligned with the app shell."
+            hint="Owning team for this record."
             label="Owner team"
           >
             <option value="engineering">Engineering</option>
@@ -114,14 +114,14 @@ export function UiShowcase() {
           </SelectField>
           <TextareaField
             defaultValue="Initial controlled record for the respiratory controller assembly."
-            hint="Textarea for notes, summaries, and change descriptions."
+            hint="Summary used during review and release."
             label="Summary"
           />
         </div>
       </div>
 
       <Drawer
-        description="Example of a reusable side panel for product details, quick edits, or approval actions."
+        description="Side panel for product details and quick actions."
         onClose={() => setIsDrawerOpen(false)}
         open={isDrawerOpen}
         title="Product quick view"

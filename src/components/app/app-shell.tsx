@@ -72,57 +72,99 @@ export function AppShell({
     .slice(0, 2)
     .map((part) => part.charAt(0).toUpperCase())
     .join("");
+  const mobileItems = navGroups.flatMap((group) =>
+    group.items
+      .filter((item) => hasRoleAccess(user.role, item.allowedRoles))
+      .map((item) => ({
+        ...item,
+        key: `${group.title}-${item.label}`,
+      })),
+  );
 
   return (
-    <div className="min-h-screen bg-[#f2efe6] text-slate-950">
-      <header className="border-b border-slate-900/10 bg-white/90 backdrop-blur">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.32em] text-teal-800">
+    <div className="min-h-screen text-slate-950">
+      <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/95 backdrop-blur">
+        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
+          <div className="min-w-0">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-teal-700">
               NextGen PLM
             </p>
-            <p className="mt-1 text-sm text-slate-600">
-              Product lifecycle workspace
+            <p className="mt-1 text-sm text-slate-600 sm:text-[15px]">
+              Product records, revisions, and release operations
             </p>
           </div>
 
-          <div className="hidden min-w-[240px] flex-1 md:flex md:justify-center">
-            <div className="w-full max-w-sm rounded-full border border-slate-900/10 bg-[#f7f4ec] px-4 py-2 text-sm text-slate-500">
+          <div className="hidden min-w-[280px] flex-1 lg:flex lg:justify-center">
+            <div className="w-full max-w-md rounded-full border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm text-slate-500">
               Search products, parts, documents
             </div>
           </div>
 
           <div className="flex items-center gap-3">
-            <div className="hidden rounded-full border border-slate-900/10 bg-[#f7f4ec] px-3 py-2 text-xs font-medium text-slate-600 sm:block">
+            <div className="hidden rounded-full border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-medium text-slate-600 sm:block">
               {user.organizationName}
             </div>
             {headerAction ? <div className="hidden sm:block">{headerAction}</div> : null}
-            <div className="hidden text-right sm:block">
+            <div className="hidden text-right md:block">
               <p className="text-sm font-medium text-slate-800">{user.fullName}</p>
               <p className="text-xs uppercase tracking-[0.18em] text-slate-500">
                 {formatRoleLabel(user.role)}
               </p>
             </div>
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-950 text-sm font-semibold text-white">
+            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-900 text-sm font-semibold text-white">
               {initials || "NG"}
             </div>
           </div>
         </div>
+
+        <div className="mx-auto flex max-w-7xl gap-2 overflow-x-auto px-4 pb-4 sm:px-6 lg:hidden">
+          {mobileItems.map((item) => {
+            const isActive = item.href ? pathname === item.href : false;
+
+            return item.href ? (
+              <Link
+                key={item.key}
+                className={`shrink-0 rounded-full border px-4 py-2 text-sm font-medium transition ${
+                  isActive
+                    ? "border-slate-900 bg-slate-900 text-white"
+                    : "border-slate-200 bg-white text-slate-700"
+                }`}
+                href={item.href}
+              >
+                {item.label}
+              </Link>
+            ) : (
+              <span
+                key={item.key}
+                className="shrink-0 rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm text-slate-500"
+              >
+                {item.label}
+              </span>
+            );
+          })}
+        </div>
       </header>
 
-      <div className="mx-auto grid max-w-7xl gap-6 px-4 py-6 sm:px-6 lg:grid-cols-[260px_minmax(0,1fr)] lg:px-8">
-        <aside className="rounded-[1.75rem] border border-slate-900/10 bg-white p-5 shadow-[0_20px_50px_-40px_rgba(15,23,42,0.35)]">
-          <div className="border-b border-slate-900/8 pb-4">
-            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-slate-400">
+      <div className="mx-auto grid max-w-7xl gap-6 px-4 py-6 sm:px-6 lg:grid-cols-[250px_minmax(0,1fr)] lg:px-8">
+        <aside className="hidden self-start rounded-[1.75rem] border border-slate-200 bg-white p-5 lg:sticky lg:top-28 lg:block">
+          <div className="border-b border-slate-200 pb-5">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-slate-400">
               Modules
             </p>
-            <p className="mt-2 text-sm leading-6 text-slate-600">
-              Shared navigation for the authenticated product workspace.
-            </p>
-            <div className="mt-4 rounded-[1.25rem] border border-slate-900/8 bg-[#faf8f2] p-4">
-              <p className="text-sm font-medium text-slate-800">{user.fullName}</p>
-              <p className="mt-1 text-sm text-slate-600">{user.email}</p>
-              <p className="mt-3 text-xs font-semibold uppercase tracking-[0.22em] text-teal-800">
+            <div className="mt-5 rounded-[1.25rem] border border-slate-200 bg-slate-50 p-4">
+              <div className="flex items-center gap-3">
+                <div className="flex h-11 w-11 items-center justify-center rounded-full bg-slate-900 text-sm font-semibold text-white">
+                  {initials || "NG"}
+                </div>
+                <div className="min-w-0">
+                  <p className="truncate text-sm font-semibold text-slate-900">{user.fullName}</p>
+                  <p className="truncate text-xs uppercase tracking-[0.16em] text-slate-500">
+                    {formatRoleLabel(user.role)}
+                  </p>
+                </div>
+              </div>
+              <p className="mt-4 text-sm text-slate-600">{user.email}</p>
+              <p className="mt-3 text-[11px] font-semibold uppercase tracking-[0.22em] text-teal-700">
                 {user.organizationName}
               </p>
             </div>
@@ -140,7 +182,7 @@ export function AppShell({
 
               return (
                 <div key={group.title}>
-                  <p className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-slate-400">
                     {group.title}
                   </p>
                   <div className="mt-3 space-y-2">
@@ -151,11 +193,11 @@ export function AppShell({
                         return (
                           <div
                             key={item.label}
-                            className="flex items-center justify-between rounded-2xl border border-slate-900/8 bg-[#faf8f2] px-4 py-3 text-sm text-slate-700"
+                            className="flex items-center justify-between rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-700"
                           >
                             <span>{item.label}</span>
                             {item.upcoming ? (
-                              <span className="rounded-full bg-slate-900/6 px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-500">
+                              <span className="rounded-full bg-white px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-500">
                                 Soon
                               </span>
                             ) : null}
@@ -168,8 +210,8 @@ export function AppShell({
                           key={item.label}
                           className={`flex items-center justify-between rounded-2xl px-4 py-3 text-sm font-medium transition ${
                             isActive
-                              ? "bg-slate-950 text-white"
-                              : "border border-slate-900/8 bg-[#faf8f2] text-slate-700 hover:bg-white"
+                              ? "border border-slate-900 bg-slate-900 text-white"
+                              : "border border-slate-200 bg-slate-50 text-slate-700 hover:bg-white"
                           }`}
                           href={item.href}
                         >
@@ -183,13 +225,13 @@ export function AppShell({
                       );
                     })}
                   </div>
-                </div>
+                  </div>
               );
             })}
           </nav>
         </aside>
 
-        <div className="min-w-0">{children}</div>
+        <div className="min-w-0 space-y-6">{children}</div>
       </div>
     </div>
   );

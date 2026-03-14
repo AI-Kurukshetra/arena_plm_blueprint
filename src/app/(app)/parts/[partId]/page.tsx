@@ -296,17 +296,16 @@ export default async function PartDetailPage({
 
   return (
     <main className="space-y-6">
-      <section className="relative overflow-hidden rounded-[2rem] border border-slate-900/10 bg-white p-8 shadow-[0_30px_70px_-45px_rgba(15,23,42,0.35)]">
-        <div className="absolute inset-x-0 top-0 h-32 bg-[radial-gradient(circle_at_top_left,_rgba(245,158,11,0.14),_transparent_54%),radial-gradient(circle_at_top_right,_rgba(20,184,166,0.16),_transparent_58%)]" />
-        <div className="relative flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
+      <section className="rounded-[2.2rem] border border-slate-900/10 bg-white/85 p-7 shadow-[0_30px_80px_-58px_rgba(15,23,42,0.45)] backdrop-blur sm:p-8">
+        <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
           <div className="max-w-3xl">
             <Link
-              className="text-xs font-semibold uppercase tracking-[0.28em] text-slate-500 transition hover:text-slate-800"
+              className="text-[11px] font-semibold uppercase tracking-[0.28em] text-slate-500 transition hover:text-slate-800"
               href="/parts"
             >
               Part library
             </Link>
-            <h1 className="mt-4 font-[family-name:var(--font-display)] text-4xl font-semibold tracking-[-0.04em] text-slate-950">
+            <h1 className="mt-4 font-[family-name:var(--font-display)] text-4xl font-semibold tracking-[-0.05em] text-slate-950">
               {part.name}
             </h1>
             <div className="mt-4 flex flex-wrap items-center gap-3">
@@ -314,44 +313,44 @@ export default async function PartDetailPage({
                 label={part.lifecycle_status.replaceAll("_", " ")}
                 tone={getStatusTone(part.lifecycle_status)}
               />
-              <span className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-400">
+              <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-400">
                 {part.part_number}
               </span>
               {part.part_type ? (
-                <span className="rounded-full bg-slate-900/6 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-slate-600">
+                <span className="rounded-full border border-slate-900/8 bg-[#f8f6f1] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-600">
                   {part.part_type}
                 </span>
               ) : null}
               {part.unit_of_measure ? (
-                <span className="rounded-full bg-slate-900/6 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-slate-600">
+                <span className="rounded-full border border-slate-900/8 bg-[#f8f6f1] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-600">
                   {part.unit_of_measure}
                 </span>
               ) : null}
             </div>
-            <p className="mt-4 max-w-2xl text-sm leading-6 text-slate-600">
+            <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-600">
               {part.description || "No part summary has been added yet."}
             </p>
           </div>
 
-          <div className="grid gap-3 sm:grid-cols-3 lg:w-[31rem]">
-            <div className="rounded-[1.5rem] border border-slate-900/10 bg-[#fcfaf5] p-4">
-              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">
+          <div className="grid gap-3 sm:grid-cols-3 lg:w-[30rem]">
+            <div className="rounded-[1.5rem] border border-slate-900/10 bg-[#f8f6f1] p-4">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-400">
                 Current revision
               </p>
               <p className="mt-3 text-3xl font-semibold tracking-[-0.05em] text-slate-950">
                 {currentRevision?.revision_code ?? "None"}
               </p>
             </div>
-            <div className="rounded-[1.5rem] border border-slate-900/10 bg-[#fcfaf5] p-4">
-              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">
+            <div className="rounded-[1.5rem] border border-slate-900/10 bg-[#f8f6f1] p-4">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-400">
                 Revision count
               </p>
               <p className="mt-3 text-3xl font-semibold tracking-[-0.05em] text-slate-950">
                 {partRevisions.length}
               </p>
             </div>
-            <div className="rounded-[1.5rem] border border-teal-900/10 bg-teal-50/70 p-4">
-              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-teal-700">
+            <div className="rounded-[1.5rem] border border-teal-900/10 bg-teal-50/80 p-4">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-teal-700">
                 Linked usages
               </p>
               <p className="mt-3 text-3xl font-semibold tracking-[-0.05em] text-slate-950">
@@ -361,8 +360,8 @@ export default async function PartDetailPage({
           </div>
         </div>
 
-        <div className="relative mt-6 grid gap-4 lg:grid-cols-[minmax(0,1fr)_300px]">
-          <div className="rounded-[1.5rem] border border-slate-900/8 bg-[#faf8f2] p-5">
+        <div className="mt-6 grid gap-4 lg:grid-cols-[minmax(0,1fr)_300px]">
+          <div className="rounded-[1.5rem] border border-slate-900/8 bg-[#f8f6f1] p-5">
             <div className="flex flex-wrap items-center gap-3">
               <StatusBadge
                 label={revisionsError ? "history unavailable" : "usage-aware record"}
@@ -370,14 +369,14 @@ export default async function PartDetailPage({
               />
               <p className="text-sm text-slate-600">
                 {usageError
-                  ? "Linked BOM usage could not be loaded from Supabase yet."
-                  : "This page combines revision history with the current revision's downstream BOM usage."}
+                  ? "Linked BOM usage is temporarily unavailable."
+                  : "Revision history and linked usage are available for this part."}
               </p>
             </div>
           </div>
 
           <div className="rounded-[1.5rem] border border-slate-900/8 bg-slate-950 p-5 text-white">
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-teal-200">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-teal-200">
               First recorded
             </p>
             <p className="mt-3 text-3xl font-semibold tracking-[-0.05em]">
@@ -392,7 +391,7 @@ export default async function PartDetailPage({
 
       <section className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_360px]">
         <div className="space-y-4">
-          <div className="rounded-[1.75rem] border border-slate-900/10 bg-white p-6 shadow-[0_20px_50px_-40px_rgba(15,23,42,0.35)]">
+          <div className="rounded-[1.9rem] border border-slate-900/10 bg-white/88 p-6 shadow-[0_24px_70px_-55px_rgba(15,23,42,0.45)] backdrop-blur">
             <div className="border-b border-slate-900/8 pb-5">
               <p className="text-sm font-medium text-slate-500">Revision history</p>
               <h2 className="mt-2 text-2xl font-semibold tracking-[-0.03em] text-slate-950">
@@ -402,7 +401,7 @@ export default async function PartDetailPage({
 
             <div className="mt-6 space-y-4">
               {partRevisions.length === 0 ? (
-                <div className="rounded-[1.5rem] border border-dashed border-slate-900/12 bg-[#fcfaf5] p-6 text-sm text-slate-500">
+                <div className="rounded-[1.5rem] border border-dashed border-slate-900/12 bg-[#f8f6f1] p-6 text-sm text-slate-500">
                   No revisions recorded for this part yet.
                 </div>
               ) : (
@@ -415,7 +414,7 @@ export default async function PartDetailPage({
                       className={`rounded-[1.5rem] border p-5 transition ${
                         isCurrent
                           ? "border-teal-900/20 bg-teal-50/60"
-                          : "border-slate-900/8 bg-[#fcfaf5]"
+                          : "border-slate-900/8 bg-[#f8f6f1]"
                       }`}
                     >
                       <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
@@ -451,7 +450,7 @@ export default async function PartDetailPage({
             </div>
           </div>
 
-          <div className="rounded-[1.75rem] border border-slate-900/10 bg-white p-6 shadow-[0_20px_50px_-40px_rgba(15,23,42,0.35)]">
+          <div className="rounded-[1.9rem] border border-slate-900/10 bg-white/88 p-6 shadow-[0_24px_70px_-55px_rgba(15,23,42,0.45)] backdrop-blur">
             <div className="border-b border-slate-900/8 pb-5">
               <p className="text-sm font-medium text-slate-500">Linked usages</p>
               <h2 className="mt-2 text-2xl font-semibold tracking-[-0.03em] text-slate-950">
@@ -462,18 +461,17 @@ export default async function PartDetailPage({
             <div className="mt-6 space-y-4">
               {usageError ? (
                 <div className="rounded-[1.5rem] border border-dashed border-amber-900/20 bg-amber-50/70 p-6 text-sm text-amber-900">
-                  BOM usage is not available yet because the related tables or data are
-                  not ready in the connected database.
+                  BOM usage could not be loaded at this time.
                 </div>
               ) : linkedUsages.length === 0 ? (
-                <div className="rounded-[1.5rem] border border-dashed border-slate-900/12 bg-[#fcfaf5] p-6 text-sm text-slate-500">
+                <div className="rounded-[1.5rem] border border-dashed border-slate-900/12 bg-[#f8f6f1] p-6 text-sm text-slate-500">
                   No linked BOM usage found for the current revision.
                 </div>
               ) : (
                 linkedUsages.map((usage) => (
                   <article
                     key={usage.id}
-                    className="rounded-[1.5rem] border border-slate-900/8 bg-[#fcfaf5] p-5"
+                    className="rounded-[1.5rem] border border-slate-900/8 bg-[#f8f6f1] p-5"
                   >
                     <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                       <div>
@@ -491,7 +489,7 @@ export default async function PartDetailPage({
                     </div>
                     <div className="mt-4 grid gap-3 sm:grid-cols-3">
                       <div className="rounded-[1.25rem] border border-slate-900/8 bg-white px-4 py-3">
-                        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
+                        <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">
                           BOM
                         </p>
                         <p className="mt-2 text-sm font-medium text-slate-900">
@@ -499,7 +497,7 @@ export default async function PartDetailPage({
                         </p>
                       </div>
                       <div className="rounded-[1.25rem] border border-slate-900/8 bg-white px-4 py-3">
-                        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
+                        <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">
                           Line
                         </p>
                         <p className="mt-2 text-sm font-medium text-slate-900">
@@ -507,7 +505,7 @@ export default async function PartDetailPage({
                         </p>
                       </div>
                       <div className="rounded-[1.25rem] border border-slate-900/8 bg-white px-4 py-3">
-                        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
+                        <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">
                           Quantity
                         </p>
                         <p className="mt-2 text-sm font-medium text-slate-900">
@@ -523,10 +521,10 @@ export default async function PartDetailPage({
         </div>
 
         <div className="space-y-4">
-          <div className="rounded-[1.75rem] border border-slate-900/10 bg-white p-6 shadow-[0_20px_50px_-40px_rgba(15,23,42,0.35)]">
+          <div className="rounded-[1.9rem] border border-slate-900/10 bg-white/88 p-6 shadow-[0_24px_70px_-55px_rgba(15,23,42,0.45)] backdrop-blur">
             <p className="text-sm font-medium text-slate-500">Current release</p>
-            <div className="mt-4 rounded-[1.25rem] border border-slate-900/8 bg-[#faf8f2] p-4">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
+            <div className="mt-4 rounded-[1.25rem] border border-slate-900/8 bg-[#f8f6f1] p-4">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">
                 Active revision
               </p>
               <p className="mt-2 text-lg font-semibold tracking-[-0.03em] text-slate-950">
@@ -540,14 +538,11 @@ export default async function PartDetailPage({
             </div>
           </div>
 
-          <div className="rounded-[1.75rem] border border-slate-900/10 bg-[#fcfaf5] p-6 shadow-[0_20px_50px_-40px_rgba(15,23,42,0.2)]">
-            <p className="text-sm font-medium text-slate-500">Next expansion</p>
-            <h3 className="mt-3 text-xl font-semibold tracking-[-0.03em] text-slate-950">
-              Supplier, cost, and specification context
-            </h3>
+          <div className="rounded-[1.9rem] border border-slate-900/10 bg-[#f8f6f1] p-6 shadow-[0_24px_70px_-55px_rgba(15,23,42,0.25)]">
+            <p className="text-sm font-medium text-slate-500">Record scope</p>
             <p className="mt-3 text-sm leading-6 text-slate-600">
-              Future tasks can extend this record with supplier links, cost rollups,
-              and structured specifications without changing the current page flow.
+              This record includes lifecycle status, revision timeline, and where the
+              current revision is used.
             </p>
           </div>
         </div>

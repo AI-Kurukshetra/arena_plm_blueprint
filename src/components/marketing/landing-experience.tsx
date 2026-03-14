@@ -111,8 +111,8 @@ export function LandingExperience({
                   One calm release room
                 </h2>
               </div>
-              <div className="rounded-full border border-line bg-surface-muted px-3 py-1 text-xs font-semibold tracking-wide text-amber-800">
-                MVP
+              <div className="rounded-full border border-line bg-surface-muted px-3 py-1 text-xs font-semibold tracking-wide text-slate-700">
+                Product
               </div>
             </div>
 
@@ -134,11 +134,11 @@ export function LandingExperience({
 
             <div className="mt-7 rounded-[1.1rem] border border-line bg-surface-muted p-4">
               <p className="text-xs font-semibold tracking-wide text-slate-600">
-                Why it feels better
+                Lifecycle clarity
               </p>
               <p className="mt-2 text-sm leading-6 text-slate-700">
-                Fewer visual weights, clear spacing, and deliberate typography make every
-                screen easier to read during release work.
+                Teams can align faster when records, approvals, and supplier files stay
+                connected in a single workflow.
               </p>
             </div>
           </section>

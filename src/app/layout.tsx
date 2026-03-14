@@ -19,7 +19,7 @@ const fraunces = Fraunces({
 
 export const metadata: Metadata = {
   title: "NextGen PLM",
-  description: "Cloud-native Product Lifecycle Management platform for a hackathon MVP.",
+  description: "Cloud-native Product Lifecycle Management platform.",
 };
 
 export default function RootLayout({

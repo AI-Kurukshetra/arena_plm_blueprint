@@ -15,8 +15,10 @@ export default async function SignInPage() {
   }
 
   return (
-    <main className="min-h-screen bg-[#f7f4ec] px-6 py-10 text-slate-950 sm:px-10">
-      <SignInForm />
+    <main className="min-h-screen px-5 py-6 text-slate-950 sm:px-8 lg:px-10">
+      <div className="mx-auto max-w-7xl">
+        <SignInForm />
+      </div>
     </main>
   );
 }

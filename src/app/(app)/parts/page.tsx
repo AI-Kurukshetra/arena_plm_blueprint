@@ -116,42 +116,40 @@ export default async function PartsPage() {
 
   return (
     <main className="space-y-6">
-      <section className="relative overflow-hidden rounded-[2rem] border border-slate-900/10 bg-white p-8 shadow-[0_30px_70px_-45px_rgba(15,23,42,0.35)]">
-        <div className="absolute inset-x-0 top-0 h-28 bg-[radial-gradient(circle_at_top_left,_rgba(20,184,166,0.16),_transparent_52%),radial-gradient(circle_at_top_right,_rgba(245,158,11,0.12),_transparent_54%)]" />
-        <div className="relative flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+      <section className="rounded-[2.2rem] border border-slate-900/10 bg-white/85 p-7 shadow-[0_30px_80px_-58px_rgba(15,23,42,0.45)] backdrop-blur sm:p-8">
+        <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-3xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.32em] text-teal-800">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-teal-800">
               Part library
             </p>
-            <h1 className="mt-4 font-[family-name:var(--font-display)] text-4xl font-semibold tracking-[-0.04em] text-slate-950">
-              Reusable component records with revision-aware inventory context.
+            <h1 className="mt-4 font-[family-name:var(--font-display)] text-4xl font-semibold tracking-[-0.05em] text-slate-950">
+              Part library
             </h1>
-            <p className="mt-4 max-w-2xl text-sm leading-6 text-slate-600">
-              Parts are organized for reuse across products and BOMs, with current
-              revision visibility, release state, and component typing ready for
-              downstream engineering review.
+            <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-600">
+              Browse controlled parts with revision status, type, and release
+              information.
             </p>
           </div>
 
-          <div className="grid gap-3 sm:grid-cols-3 lg:w-[31rem]">
-            <div className="rounded-[1.5rem] border border-slate-900/10 bg-[#fcfaf5] p-4">
-              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">
+          <div className="grid gap-3 sm:grid-cols-3 lg:w-[30rem]">
+            <div className="rounded-[1.5rem] border border-slate-900/10 bg-[#f8f6f1] p-4">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-400">
                 Total parts
               </p>
               <p className="mt-3 text-3xl font-semibold tracking-[-0.05em] text-slate-950">
                 {formatCount(totalParts)}
               </p>
             </div>
-            <div className="rounded-[1.5rem] border border-amber-900/10 bg-amber-50/70 p-4">
-              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-amber-700">
+            <div className="rounded-[1.5rem] border border-amber-900/10 bg-amber-50/80 p-4">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-amber-700">
                 Assemblies
               </p>
               <p className="mt-3 text-3xl font-semibold tracking-[-0.05em] text-slate-950">
                 {formatCount(assemblyParts)}
               </p>
             </div>
-            <div className="rounded-[1.5rem] border border-emerald-900/10 bg-emerald-50/70 p-4">
-              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-emerald-700">
+            <div className="rounded-[1.5rem] border border-emerald-900/10 bg-emerald-50/80 p-4">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-700">
                 Released
               </p>
               <p className="mt-3 text-3xl font-semibold tracking-[-0.05em] text-slate-950">
@@ -161,23 +159,23 @@ export default async function PartsPage() {
           </div>
         </div>
 
-        <div className="relative mt-6 rounded-[1.5rem] border border-slate-900/8 bg-[#faf8f2] p-5">
+        <div className="mt-6 rounded-[1.5rem] border border-slate-900/8 bg-[#f8f6f1] p-5">
           <div className="flex flex-wrap items-center gap-3">
-            <StatusBadge
-              label={error ? "connection issue" : "reusable inventory"}
-              tone={error ? "warning" : "success"}
-            />
-            <p className="text-sm text-slate-600">
-              {error
-                ? "Supabase query returned an error. The shell remains available, but part rows could not be loaded."
-                : "Current part revisions and release states are being pulled directly from your controlled records."}
-            </p>
+              <StatusBadge
+                label={error ? "connection issue" : "reusable inventory"}
+                tone={error ? "warning" : "success"}
+              />
+              <p className="text-sm text-slate-600">
+                {error
+                  ? "Part records are temporarily unavailable."
+                  : "Part inventory data is up to date."}
+              </p>
+            </div>
           </div>
-        </div>
       </section>
 
       <section className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_320px]">
-        <div className="rounded-[1.75rem] border border-slate-900/10 bg-white p-6 shadow-[0_20px_50px_-40px_rgba(15,23,42,0.35)]">
+        <div className="rounded-[1.9rem] border border-slate-900/10 bg-white/88 p-6 shadow-[0_24px_70px_-55px_rgba(15,23,42,0.45)] backdrop-blur">
           <div className="flex flex-col gap-3 border-b border-slate-900/8 pb-5 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p className="text-sm font-medium text-slate-500">Library list</p>
@@ -185,10 +183,6 @@ export default async function PartsPage() {
                 Controlled parts
               </h2>
             </div>
-            <p className="max-w-md text-sm leading-6 text-slate-500">
-              This list is the foundation for reuse workflows, BOM assembly, and later
-              duplicate detection or preferred-part guidance.
-            </p>
           </div>
 
           <div className="mt-5">
@@ -264,28 +258,11 @@ export default async function PartsPage() {
           </div>
         </div>
 
-        <div className="space-y-4">
-          <div className="rounded-[1.75rem] border border-slate-900/10 bg-white p-6 shadow-[0_20px_50px_-40px_rgba(15,23,42,0.35)]">
-            <p className="text-sm font-medium text-slate-500">Why this matters</p>
-            <h3 className="mt-3 text-xl font-semibold tracking-[-0.03em] text-slate-950">
-              Part reuse drives faster release
-            </h3>
-            <p className="mt-3 text-sm leading-6 text-slate-600">
-              Teams can review release state and revision freshness before using a part
-              in new product structures or engineering changes.
-            </p>
-          </div>
-
-          <div className="rounded-[1.75rem] border border-slate-900/10 bg-[#fcfaf5] p-6 shadow-[0_20px_50px_-40px_rgba(15,23,42,0.2)]">
-            <p className="text-sm font-medium text-slate-500">Next in flow</p>
-            <h3 className="mt-3 text-xl font-semibold tracking-[-0.03em] text-slate-950">
-              Linked usages and BOM context
-            </h3>
-            <p className="mt-3 text-sm leading-6 text-slate-600">
-              The detail page expands this library entry into revision history and where
-              the current revision is consumed.
-            </p>
-          </div>
+        <div className="rounded-[1.9rem] border border-slate-900/10 bg-white/88 p-6 shadow-[0_24px_70px_-55px_rgba(15,23,42,0.45)] backdrop-blur">
+          <p className="text-sm font-medium text-slate-500">Library summary</p>
+          <p className="mt-3 text-sm leading-6 text-slate-600">
+            Select any part to view its revision timeline and linked BOM usage.
+          </p>
         </div>
       </section>
     </main>

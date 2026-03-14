@@ -136,17 +136,16 @@ export default async function ProductDetailPage({
 
   return (
     <main className="space-y-6">
-      <section className="relative overflow-hidden rounded-[2rem] border border-slate-900/10 bg-white p-8 shadow-[0_30px_70px_-45px_rgba(15,23,42,0.35)]">
-        <div className="absolute inset-x-0 top-0 h-32 bg-[radial-gradient(circle_at_top_left,_rgba(15,23,42,0.08),_transparent_52%),radial-gradient(circle_at_top_right,_rgba(20,184,166,0.18),_transparent_60%)]" />
-        <div className="relative flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
+      <section className="rounded-[2.2rem] border border-slate-900/10 bg-white/85 p-7 shadow-[0_30px_80px_-58px_rgba(15,23,42,0.45)] backdrop-blur sm:p-8">
+        <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
           <div className="max-w-3xl">
             <Link
-              className="text-xs font-semibold uppercase tracking-[0.28em] text-slate-500 transition hover:text-slate-800"
+              className="text-[11px] font-semibold uppercase tracking-[0.28em] text-slate-500 transition hover:text-slate-800"
               href="/products"
             >
               Product catalog
             </Link>
-            <h1 className="mt-4 font-[family-name:var(--font-display)] text-4xl font-semibold tracking-[-0.04em] text-slate-950">
+            <h1 className="mt-4 font-[family-name:var(--font-display)] text-4xl font-semibold tracking-[-0.05em] text-slate-950">
               {product.name}
             </h1>
             <div className="mt-4 flex flex-wrap items-center gap-3">
@@ -154,39 +153,39 @@ export default async function ProductDetailPage({
                 label={product.lifecycle_status.replaceAll("_", " ")}
                 tone={getStatusTone(product.lifecycle_status)}
               />
-              <span className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-400">
+              <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-400">
                 {product.product_code}
               </span>
               {product.category ? (
-                <span className="rounded-full bg-slate-900/6 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-slate-600">
+                <span className="rounded-full border border-slate-900/8 bg-[#f8f6f1] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-600">
                   {product.category}
                 </span>
               ) : null}
             </div>
-            <p className="mt-4 max-w-2xl text-sm leading-6 text-slate-600">
+            <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-600">
               {product.description || "No product summary has been added yet."}
             </p>
           </div>
 
-          <div className="grid gap-3 sm:grid-cols-3 lg:w-[31rem]">
-            <div className="rounded-[1.5rem] border border-slate-900/10 bg-[#fcfaf5] p-4">
-              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">
+          <div className="grid gap-3 sm:grid-cols-3 lg:w-[30rem]">
+            <div className="rounded-[1.5rem] border border-slate-900/10 bg-[#f8f6f1] p-4">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-400">
                 Current revision
               </p>
               <p className="mt-3 text-3xl font-semibold tracking-[-0.05em] text-slate-950">
                 {currentRevision?.revision_code ?? "None"}
               </p>
             </div>
-            <div className="rounded-[1.5rem] border border-slate-900/10 bg-[#fcfaf5] p-4">
-              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">
+            <div className="rounded-[1.5rem] border border-slate-900/10 bg-[#f8f6f1] p-4">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-400">
                 Revision count
               </p>
               <p className="mt-3 text-3xl font-semibold tracking-[-0.05em] text-slate-950">
                 {productRevisions.length}
               </p>
             </div>
-            <div className="rounded-[1.5rem] border border-emerald-900/10 bg-emerald-50/70 p-4">
-              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-emerald-700">
+            <div className="rounded-[1.5rem] border border-emerald-900/10 bg-emerald-50/80 p-4">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-700">
                 Released revisions
               </p>
               <p className="mt-3 text-3xl font-semibold tracking-[-0.05em] text-slate-950">
@@ -196,8 +195,8 @@ export default async function ProductDetailPage({
           </div>
         </div>
 
-        <div className="relative mt-6 grid gap-4 lg:grid-cols-[minmax(0,1fr)_300px]">
-          <div className="rounded-[1.5rem] border border-slate-900/8 bg-[#faf8f2] p-5">
+        <div className="mt-6 grid gap-4 lg:grid-cols-[minmax(0,1fr)_300px]">
+          <div className="rounded-[1.5rem] border border-slate-900/8 bg-[#f8f6f1] p-5">
             <div className="flex flex-wrap items-center gap-3">
               <StatusBadge
                 label={revisionsError ? "history unavailable" : "revision history"}
@@ -205,14 +204,14 @@ export default async function ProductDetailPage({
               />
               <p className="text-sm text-slate-600">
                 {revisionsError
-                  ? "Revision records could not be loaded from Supabase for this product."
-                  : "This history is driven directly from the controlled product revision table."}
+                  ? "Revision records are temporarily unavailable for this product."
+                  : "Revision history is available for this product."}
               </p>
             </div>
           </div>
 
           <div className="rounded-[1.5rem] border border-slate-900/8 bg-slate-950 p-5 text-white">
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-teal-200">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-teal-200">
               First recorded
             </p>
             <p className="mt-3 text-3xl font-semibold tracking-[-0.05em]">
@@ -226,7 +225,7 @@ export default async function ProductDetailPage({
       </section>
 
       <section className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_320px]">
-        <div className="rounded-[1.75rem] border border-slate-900/10 bg-white p-6 shadow-[0_20px_50px_-40px_rgba(15,23,42,0.35)]">
+        <div className="rounded-[1.9rem] border border-slate-900/10 bg-white/88 p-6 shadow-[0_24px_70px_-55px_rgba(15,23,42,0.45)] backdrop-blur">
           <div className="border-b border-slate-900/8 pb-5">
             <p className="text-sm font-medium text-slate-500">Revision history</p>
             <h2 className="mt-2 text-2xl font-semibold tracking-[-0.03em] text-slate-950">
@@ -236,7 +235,7 @@ export default async function ProductDetailPage({
 
           <div className="mt-6 space-y-4">
             {productRevisions.length === 0 ? (
-              <div className="rounded-[1.5rem] border border-dashed border-slate-900/12 bg-[#fcfaf5] p-6 text-sm text-slate-500">
+              <div className="rounded-[1.5rem] border border-dashed border-slate-900/12 bg-[#f8f6f1] p-6 text-sm text-slate-500">
                 No revisions recorded for this product yet.
               </div>
             ) : (
@@ -249,7 +248,7 @@ export default async function ProductDetailPage({
                     className={`rounded-[1.5rem] border p-5 transition ${
                       isCurrent
                         ? "border-teal-900/20 bg-teal-50/60"
-                        : "border-slate-900/8 bg-[#fcfaf5]"
+                        : "border-slate-900/8 bg-[#f8f6f1]"
                     }`}
                   >
                     <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
@@ -284,11 +283,11 @@ export default async function ProductDetailPage({
         </div>
 
         <div className="space-y-4">
-          <div className="rounded-[1.75rem] border border-slate-900/10 bg-white p-6 shadow-[0_20px_50px_-40px_rgba(15,23,42,0.35)]">
+          <div className="rounded-[1.9rem] border border-slate-900/10 bg-white/88 p-6 shadow-[0_24px_70px_-55px_rgba(15,23,42,0.45)] backdrop-blur">
             <p className="text-sm font-medium text-slate-500">Record summary</p>
             <div className="mt-4 space-y-4">
-              <div className="rounded-[1.25rem] border border-slate-900/8 bg-[#faf8f2] p-4">
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
+              <div className="rounded-[1.25rem] border border-slate-900/8 bg-[#f8f6f1] p-4">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">
                   Current release
                 </p>
                 <p className="mt-2 text-lg font-semibold tracking-[-0.03em] text-slate-950">
@@ -297,8 +296,8 @@ export default async function ProductDetailPage({
                     : "No active revision"}
                 </p>
               </div>
-              <div className="rounded-[1.25rem] border border-slate-900/8 bg-[#faf8f2] p-4">
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
+              <div className="rounded-[1.25rem] border border-slate-900/8 bg-[#f8f6f1] p-4">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">
                   Release timing
                 </p>
                 <p className="mt-2 text-lg font-semibold tracking-[-0.03em] text-slate-950">
@@ -308,14 +307,11 @@ export default async function ProductDetailPage({
             </div>
           </div>
 
-          <div className="rounded-[1.75rem] border border-slate-900/10 bg-[#fcfaf5] p-6 shadow-[0_20px_50px_-40px_rgba(15,23,42,0.2)]">
-            <p className="text-sm font-medium text-slate-500">Next expansion</p>
-            <h3 className="mt-3 text-xl font-semibold tracking-[-0.03em] text-slate-950">
-              Linked BOM, documents, and specifications
-            </h3>
+          <div className="rounded-[1.9rem] border border-slate-900/10 bg-[#f8f6f1] p-6 shadow-[0_24px_70px_-55px_rgba(15,23,42,0.25)]">
+            <p className="text-sm font-medium text-slate-500">Record scope</p>
             <p className="mt-3 text-sm leading-6 text-slate-600">
-              Future tasks can attach controlled documents, CAD references, and BOM
-              structures to this page without changing the core revision layout.
+              This record includes lifecycle status, revision timeline, and current
+              release details.
             </p>
           </div>
         </div>

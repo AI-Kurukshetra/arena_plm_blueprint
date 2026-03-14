@@ -115,10 +115,6 @@ export function SignInForm() {
           </button>
         </form>
 
-        <div className="mt-6 rounded-[1rem] border border-line bg-surface-muted p-4 text-sm leading-6 text-slate-700">
-          Demo users can be created with `npm run db:seed:users`.
-        </div>
-
         <p className="mt-6 text-sm text-slate-700">
           Need an account?{" "}
           <Link className="font-semibold text-slate-900 underline-offset-4 hover:underline" href="/sign-up">

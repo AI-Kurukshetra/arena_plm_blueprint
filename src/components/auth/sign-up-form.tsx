@@ -185,11 +185,6 @@ export function SignUpForm() {
           </button>
         </form>
 
-        <div className="mt-6 rounded-[1rem] border border-line bg-surface-muted p-4 text-sm leading-6 text-slate-700">
-          New signups create an organization workspace and a matching `public.users`
-          profile through the auth provisioning trigger.
-        </div>
-
         <p className="mt-6 text-sm text-slate-700">
           Already have access?{" "}
           <Link className="font-semibold text-slate-900 underline-offset-4 hover:underline" href="/sign-in">

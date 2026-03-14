@@ -15,8 +15,10 @@ export default async function SignUpPage() {
   }
 
   return (
-    <main className="min-h-screen bg-[#f7f4ec] px-6 py-10 text-slate-950 sm:px-10">
-      <SignUpForm />
+    <main className="min-h-screen px-5 py-6 text-slate-950 sm:px-8 lg:px-10">
+      <div className="mx-auto max-w-7xl">
+        <SignUpForm />
+      </div>
     </main>
   );
 }

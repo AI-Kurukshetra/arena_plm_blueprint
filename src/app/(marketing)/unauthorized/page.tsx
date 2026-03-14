@@ -41,8 +41,7 @@ export default function UnauthorizedPage() {
           </p>
 
           <div className="mt-6 rounded-[1rem] border border-line bg-surface-muted p-4 text-sm leading-7 text-slate-700">
-            Required roles for protected areas include `admin`, `engineer`,
-            `approver`, and `supplier`.
+            Contact your workspace administrator to request the required access level.
           </div>
 
           <div className="mt-8 flex flex-wrap gap-3">

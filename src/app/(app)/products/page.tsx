@@ -144,53 +144,51 @@ export default async function ProductsPage() {
 
   return (
     <main className="space-y-6">
-      <section className="relative overflow-hidden rounded-[2rem] border border-slate-900/10 bg-white p-8 shadow-[0_30px_70px_-45px_rgba(15,23,42,0.35)]">
-        <div className="absolute inset-x-0 top-0 h-28 bg-[radial-gradient(circle_at_top_left,_rgba(20,184,166,0.18),_transparent_58%),radial-gradient(circle_at_top_right,_rgba(15,23,42,0.08),_transparent_52%)]" />
-        <div className="relative flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-          <div className="max-w-3xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.32em] text-teal-800">
+      <section className="rounded-[1.9rem] border border-slate-200 bg-white p-6 sm:p-8">
+        <div className="flex flex-col gap-8 xl:flex-row xl:items-start xl:justify-between">
+          <div className="max-w-2xl">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-teal-800">
               Product data
             </p>
-            <h1 className="mt-4 font-[family-name:var(--font-display)] text-4xl font-semibold tracking-[-0.04em] text-slate-950">
-              Controlled product records with revision-aware visibility.
+            <h1 className="mt-3 font-[family-name:var(--font-display)] text-4xl font-semibold tracking-[-0.045em] text-slate-950 sm:text-5xl">
+              Product catalog
             </h1>
-            <p className="mt-4 max-w-2xl text-sm leading-6 text-slate-600">
-              This page surfaces the active catalog for your organization, including
-              lifecycle state, current revision, and release timing. It is wired for
-              live Supabase reads so later detail views can build on the same data path.
+            <p className="mt-4 text-base leading-7 text-slate-600">
+              View current products with lifecycle status, active revision, and release
+              dates.
             </p>
           </div>
 
-          <div className="grid gap-3 sm:grid-cols-3 lg:w-[31rem]">
-            <div className="rounded-[1.5rem] border border-slate-900/10 bg-[#fcfaf5] p-4">
-              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-3 xl:w-[27rem]">
+            <div className="rounded-[1.25rem] border border-slate-200 bg-slate-50 p-4">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">
                 Total products
               </p>
-              <p className="mt-3 text-3xl font-semibold tracking-[-0.05em] text-slate-950">
+              <p className="mt-2 text-3xl font-semibold tracking-[-0.04em] text-slate-950">
                 {formatCount(totalProducts)}
               </p>
             </div>
-            <div className="rounded-[1.5rem] border border-emerald-900/10 bg-emerald-50/70 p-4">
-              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-emerald-700">
+            <div className="rounded-[1.25rem] border border-emerald-200 bg-emerald-50 p-4">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-700">
                 Released
               </p>
-              <p className="mt-3 text-3xl font-semibold tracking-[-0.05em] text-slate-950">
+              <p className="mt-2 text-3xl font-semibold tracking-[-0.04em] text-slate-950">
                 {formatCount(releasedProducts)}
               </p>
             </div>
-            <div className="rounded-[1.5rem] border border-amber-900/10 bg-amber-50/80 p-4">
-              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-amber-700">
+            <div className="rounded-[1.25rem] border border-amber-200 bg-amber-50 p-4">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-amber-700">
                 In review
               </p>
-              <p className="mt-3 text-3xl font-semibold tracking-[-0.05em] text-slate-950">
+              <p className="mt-2 text-3xl font-semibold tracking-[-0.04em] text-slate-950">
                 {formatCount(reviewProducts)}
               </p>
             </div>
           </div>
         </div>
 
-        <div className="relative mt-6 grid gap-4 lg:grid-cols-[minmax(0,1fr)_260px]">
-          <div className="rounded-[1.5rem] border border-slate-900/8 bg-[#faf8f2] p-5">
+        <div className="mt-8 grid gap-4 lg:grid-cols-[minmax(0,1fr)_240px]">
+          <div className="rounded-[1.25rem] border border-slate-200 bg-slate-50 p-5">
             <div className="flex flex-wrap items-center gap-3">
               <StatusBadge
                 label={error ? "connection issue" : "live catalog"}
@@ -198,29 +196,28 @@ export default async function ProductsPage() {
               />
               <p className="text-sm text-slate-600">
                 {error
-                  ? "Supabase query returned an error. The page stays available, but product rows could not be loaded."
-                  : "Current revision metadata is being pulled directly from the active product records table."}
+                  ? "Product records are temporarily unavailable."
+                  : "Catalog data is up to date."}
               </p>
             </div>
           </div>
 
-          <div className="rounded-[1.5rem] border border-slate-900/8 bg-slate-950 p-5 text-white">
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-teal-200">
+          <div className="rounded-[1.25rem] border border-slate-900 bg-slate-900 p-5 text-white">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-teal-200">
               Category spread
             </p>
-            <p className="mt-3 text-3xl font-semibold tracking-[-0.05em]">
+            <p className="mt-2 text-3xl font-semibold tracking-[-0.04em]">
               {formatCount(trackedCategories)}
             </p>
             <p className="mt-3 text-sm leading-6 text-slate-300">
-              Distinct product categories currently represented in the organization
-              workspace.
+              Distinct product categories currently represented in your records.
             </p>
           </div>
         </div>
       </section>
 
       <section className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_320px]">
-        <div className="rounded-[1.75rem] border border-slate-900/10 bg-white p-6 shadow-[0_20px_50px_-40px_rgba(15,23,42,0.35)]">
+        <div className="rounded-[1.6rem] border border-slate-200 bg-white p-6">
           <div className="flex flex-col gap-3 border-b border-slate-900/8 pb-5 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p className="text-sm font-medium text-slate-500">Catalog list</p>
@@ -228,10 +225,6 @@ export default async function ProductsPage() {
                 Organization products
               </h2>
             </div>
-            <p className="max-w-md text-sm leading-6 text-slate-500">
-              Detail pages are tracked next. This list establishes the shared query,
-              summary, and status language for product browsing.
-            </p>
           </div>
 
           <div className="mt-5">
@@ -302,28 +295,12 @@ export default async function ProductsPage() {
           </div>
         </div>
 
-        <div className="space-y-4">
-          <div className="rounded-[1.75rem] border border-slate-900/10 bg-white p-6 shadow-[0_20px_50px_-40px_rgba(15,23,42,0.35)]">
-            <p className="text-sm font-medium text-slate-500">Page intent</p>
-            <h3 className="mt-3 text-xl font-semibold tracking-[-0.03em] text-slate-950">
-              Built for quick program review
-            </h3>
-            <p className="mt-3 text-sm leading-6 text-slate-600">
-              Engineering, approvers, and admins get a clean read on which products are
-              draft, under review, or released before drilling into revisions.
-            </p>
-          </div>
-
-          <div className="rounded-[1.75rem] border border-slate-900/10 bg-[#fcfaf5] p-6 shadow-[0_20px_50px_-40px_rgba(15,23,42,0.2)]">
-            <p className="text-sm font-medium text-slate-500">Next in sequence</p>
-            <h3 className="mt-3 text-xl font-semibold tracking-[-0.03em] text-slate-950">
-              Product detail page with revision history
-            </h3>
-            <p className="mt-3 text-sm leading-6 text-slate-600">
-              The next task can reuse this data source and expand it into revision
-              timeline, linked documents, BOM context, and release-ready details.
-            </p>
-          </div>
+        <div className="rounded-[1.6rem] border border-slate-200 bg-white p-6">
+          <p className="text-sm font-medium text-slate-500">Catalog summary</p>
+          <p className="mt-3 text-sm leading-6 text-slate-600">
+            Select any product to review revision history, release timing, and record
+            status.
+          </p>
         </div>
       </section>
     </main>
