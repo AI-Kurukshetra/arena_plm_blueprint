@@ -25,6 +25,7 @@ type PartRow = {
 };
 
 const partPageRoles = ["admin", "engineer", "approver"] as const;
+const lifecycleFilterOptions = ["all", "draft", "review", "released"] as const;
 
 function formatCount(value: number) {
   return value.toLocaleString("en-US");
@@ -65,7 +66,11 @@ function getStatusTone(status: string) {
   }
 }
 
-export default async function PartsPage() {
+export default async function PartsPage({
+  searchParams,
+}: Readonly<{
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+}>) {
   const access = await getAuthenticatedAppContext();
 
   if (access.status === "unauthenticated") {
@@ -80,26 +85,47 @@ export default async function PartsPage() {
     redirect("/unauthorized");
   }
 
+  const resolvedSearchParams = await searchParams;
+  const queryValueRaw = resolvedSearchParams.q;
+  const statusValueRaw = resolvedSearchParams.status;
+  const queryValue =
+    typeof queryValueRaw === "string" ? queryValueRaw.trim() : "";
+  const selectedStatus =
+    typeof statusValueRaw === "string" &&
+    lifecycleFilterOptions.includes(statusValueRaw as (typeof lifecycleFilterOptions)[number])
+      ? statusValueRaw
+      : "all";
+
   const supabase = await createClient();
-  const { data, error } = await supabase
-    .from("parts")
-    .select(
-      `
-        id,
-        part_number,
-        name,
-        description,
-        part_type,
-        unit_of_measure,
-        lifecycle_status,
-        current_revision:part_revisions!parts_current_revision_id_fkey (
-          revision_code,
-          status,
-          released_at
-        )
-      `,
-    )
-    .order("updated_at", { ascending: false });
+  let partQuery = supabase.from("parts").select(
+    `
+      id,
+      part_number,
+      name,
+      description,
+      part_type,
+      unit_of_measure,
+      lifecycle_status,
+      current_revision:part_revisions!parts_current_revision_id_fkey (
+        revision_code,
+        status,
+        released_at
+      )
+    `,
+  );
+
+  if (queryValue) {
+    const escapedQuery = queryValue.replaceAll(",", "\\,");
+    partQuery = partQuery.or(
+      `name.ilike.%${escapedQuery}%,part_number.ilike.%${escapedQuery}%,part_type.ilike.%${escapedQuery}%`,
+    );
+  }
+
+  if (selectedStatus !== "all") {
+    partQuery = partQuery.eq("lifecycle_status", selectedStatus);
+  }
+
+  const { data, error } = await partQuery.order("updated_at", { ascending: false });
 
   const parts = ((data ?? []) as PartRow[]).map((part) => ({
     ...part,
@@ -184,6 +210,42 @@ export default async function PartsPage() {
               </h2>
             </div>
           </div>
+
+          <form className="mt-5 grid gap-3 md:grid-cols-[minmax(0,1fr)_180px_auto_auto]" method="get">
+            <input
+              className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm text-slate-800"
+              defaultValue={queryValue}
+              name="q"
+              placeholder="Search by name, number, or type"
+              type="text"
+            />
+            <select
+              className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm text-slate-800"
+              defaultValue={selectedStatus}
+              name="status"
+            >
+              <option value="all">All statuses</option>
+              <option value="draft">Draft</option>
+              <option value="review">Review</option>
+              <option value="released">Released</option>
+            </select>
+            <button
+              className="rounded-xl border border-slate-900 bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white"
+              type="submit"
+            >
+              Apply
+            </button>
+            <Link
+              className="rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-center text-sm font-semibold text-slate-700"
+              href="/parts"
+            >
+              Reset
+            </Link>
+          </form>
+
+          <p className="mt-3 text-xs uppercase tracking-[0.16em] text-slate-500">
+            Showing {formatCount(parts.length)} matching parts
+          </p>
 
           <div className="mt-5">
             <DataTable

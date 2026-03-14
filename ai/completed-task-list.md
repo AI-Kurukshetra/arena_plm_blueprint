@@ -41,10 +41,19 @@
 - Build a product detail page with revision history.
 - Build a part library page.
 - Build a part detail page with linked usages.
+- Build a nested BOM editor.
+- Build document upload and revision history screens.
+- Build CAD file upload and file reference screens.
+- Add API routes for product, part, BOM, document, and CAD CRUD.
+- Add search and filtering for products, parts, BOMs, and documents.
 
 ## Lifecycle Tracking
 
-- No completed tasks yet.
+- Create database tables for workflows and workflow steps.
+- Create database tables for change requests and change items.
+- Create database tables for approvals and audit logs.
+- Create database tables for quality records and test results.
+- Create database tables for certifications and compliance records.
 
 ## Dashboard
 

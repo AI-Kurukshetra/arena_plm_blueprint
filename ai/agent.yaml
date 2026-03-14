@@ -13,11 +13,12 @@ agent:
     - frontend-design
 
   instructions:
+    - Always read doc/TASKS.md, doc/PROGRESS.md, and doc/BLOCKERS.md first.
     - Always read ai/skills.md first.
     - Follow the workflow and rules defined in ai/skills.md.
     - Load and use any files referenced inside skills.md.
-    - Continue development by selecting the next task from the TODO task list.
-    - Update task files after completing work.
+    - Continue development by selecting the next task from doc/TASKS.md.
+    - Update doc and ai task files after completing work.
 
   behavior:
     role: senior-full-stack-engineer
@@ -31,7 +32,7 @@ agent:
       - Maintain consistency with the project architecture
 
   priorities:
-    - Finish tasks from todo-task-list.md
+    - Finish tasks from doc/TASKS.md
     - Keep implementations simple
     - Produce working code for the MVP
     - Maintain project structure and rules

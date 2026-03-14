@@ -35,9 +35,9 @@ const navGroups: NavGroup[] = [
     items: [
       { label: "Products", href: "/products", allowedRoles: ["admin", "engineer", "approver"] },
       { label: "Parts", href: "/parts", allowedRoles: ["admin", "engineer", "approver"] },
-      { label: "BOMs", upcoming: true, allowedRoles: ["admin", "engineer", "approver"] },
-      { label: "Documents", upcoming: true, allowedRoles: ["admin", "engineer", "approver", "supplier"] },
-      { label: "CAD files", upcoming: true, allowedRoles: ["admin", "engineer", "supplier"] },
+      { label: "BOMs", href: "/boms", allowedRoles: ["admin", "engineer", "approver"] },
+      { label: "Documents", href: "/documents", allowedRoles: ["admin", "engineer", "approver", "supplier"] },
+      { label: "CAD files", href: "/cad", allowedRoles: ["admin", "engineer", "supplier"] },
     ],
   },
   {
