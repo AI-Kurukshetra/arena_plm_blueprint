@@ -56,10 +56,14 @@
 - Create database tables for quality records and test results.
 - Create database tables for certifications and compliance records.
 - Build a change request creation flow from product and part pages.
+- Build an approval queue page.
+- Build a change detail page with impacted records and decisions.
+- Implement revision release logic after approval.
 
 ## Dashboard
 
-- No completed tasks yet.
+- Create a PLM dashboard page.
+- Show counts for products, parts, open changes, and pending approvals.
 
 ## Collaboration
 

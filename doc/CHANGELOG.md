@@ -16,6 +16,10 @@
 - Added migration `20260314202500_create_quality_records_and_test_results.sql` for quality and testing lifecycle schema with RLS coverage.
 - Added migration `20260314203500_create_certifications_and_compliance_records.sql` for certification and compliance tracking schema with RLS coverage.
 - Added `/changes/new` creation workflow with server action creating `change_requests` and initial `change_items`.
+- Upgraded `/changes` into an approval queue with queue-focused filters, pending-step visibility, and assignee-aware summary cards.
+- Completed `/changes/[changeRequestId]` with impacted-record summaries, approval progress insights, and richer decision-state presentation.
+- Added release logic for approved change requests, including revision promotion, parent lifecycle/status updates, and a `Release` action on change detail pages.
+- Replaced the placeholder dashboard with a live, role-aware overview using current product, part, change, approval, document, and CAD data.
 - Added change-request entry CTAs on product and part detail pages and enabled the Changes nav link.
 - Added server actions and page forms to create/update/delete products, parts, BOMs, documents, and CAD files directly from module pages.
 - Enabled sidebar links for BOM and Documents modules.

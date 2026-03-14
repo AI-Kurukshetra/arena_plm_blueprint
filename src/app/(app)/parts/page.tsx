@@ -27,6 +27,8 @@ type PartRow = {
 
 const partPageRoles = ["admin", "engineer", "approver"] as const;
 const lifecycleFilterOptions = ["all", "draft", "review", "released"] as const;
+const partTypeOptions = ["assembly", "component", "subassembly", "raw_material"] as const;
+const uomOptions = ["ea", "pcs", "kg", "g", "m", "mm", "l"] as const;
 
 function formatCount(value: number) {
   return value.toLocaleString("en-US");
@@ -263,18 +265,30 @@ export default async function PartsPage({
               required
               type="text"
             />
-            <input
+            <select
               className="rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-800"
+              defaultValue=""
               name="partType"
-              placeholder="Part type"
-              type="text"
-            />
-            <input
+            >
+              <option value="">Select part type</option>
+              {partTypeOptions.map((option) => (
+                <option key={option} value={option}>
+                  {option.replaceAll("_", " ")}
+                </option>
+              ))}
+            </select>
+            <select
               className="rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-800"
+              defaultValue=""
               name="unitOfMeasure"
-              placeholder="UOM"
-              type="text"
-            />
+            >
+              <option value="">Select UOM</option>
+              {uomOptions.map((option) => (
+                <option key={option} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
             <input
               className="rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-800 md:col-span-2"
               name="description"

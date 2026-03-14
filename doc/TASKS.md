@@ -58,16 +58,16 @@ Status legend:
 - [x] Create database tables for quality records and test results.
 - [x] Create database tables for certifications and compliance records.
 - [x] Build a change request creation flow from product and part pages.
-- [ ] Build an approval queue page.
-- [ ] Build a change detail page with impacted records and decisions.
-- [ ] Implement revision release logic after approval.
+- [x] Build an approval queue page.
+- [x] Build a change detail page with impacted records and decisions.
+- [x] Implement revision release logic after approval.
 - [ ] Record audit events for create, edit, approve, reject, and release actions.
 - [ ] Build compliance tracking pages for standards, evidence, and certifications.
 - [ ] Build quality tracking pages for findings, actions, and test results.
 
 ## Dashboard
-- [ ] Create a PLM dashboard page.
-- [ ] Show counts for products, parts, open changes, and pending approvals.
+- [x] Create a PLM dashboard page.
+- [x] Show counts for products, parts, open changes, and pending approvals.
 - [ ] Show a recent activity feed from audit logs.
 - [ ] Show upcoming milestones and overdue tasks.
 - [ ] Show document and CAD revision summaries.

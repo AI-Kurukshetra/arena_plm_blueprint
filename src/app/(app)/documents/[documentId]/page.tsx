@@ -34,6 +34,15 @@ type DocumentRevisionRecord = {
 
 const documentPageRoles = ["admin", "engineer", "approver", "supplier"] as const;
 const documentManageRoles = ["admin", "engineer", "approver"] as const;
+const documentTypeOptions = [
+  "drawing",
+  "specification",
+  "procedure",
+  "work_instruction",
+  "manual",
+  "certificate",
+  "report",
+] as const;
 
 function formatDate(value: string | null) {
   if (!value) {
@@ -317,13 +326,17 @@ export default async function DocumentDetailPage({
                   required
                   type="text"
                 />
-                <input
+                <select
                   className="block w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-800"
                   defaultValue={document.document_type}
                   name="documentType"
-                  required
-                  type="text"
-                />
+                >
+                  {documentTypeOptions.map((option) => (
+                    <option key={option} value={option}>
+                      {option.replaceAll("_", " ")}
+                    </option>
+                  ))}
+                </select>
                 <select
                   className="block w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-800"
                   defaultValue={document.status}

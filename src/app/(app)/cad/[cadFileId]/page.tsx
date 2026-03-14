@@ -35,6 +35,7 @@ type CadRevisionRecord = {
 
 const cadPageRoles = ["admin", "engineer", "supplier"] as const;
 const cadManageRoles = ["admin", "engineer"] as const;
+const cadTypeOptions = ["3d-model", "2d-drawing", "assembly", "schematic", "layout"] as const;
 
 function formatDate(value: string | null) {
   if (!value) {
@@ -338,13 +339,18 @@ export default async function CadFileDetailPage({
                   required
                   type="text"
                 />
-                <input
+                <select
                   className="block w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-800"
                   defaultValue={cadFile.cad_type ?? ""}
                   name="cadType"
-                  placeholder="CAD type"
-                  type="text"
-                />
+                >
+                  <option value="">Select CAD type</option>
+                  {cadTypeOptions.map((option) => (
+                    <option key={option} value={option}>
+                      {option.replaceAll("-", " ")}
+                    </option>
+                  ))}
+                </select>
                 <select
                   className="block w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-800"
                   defaultValue={cadFile.status}
